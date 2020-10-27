@@ -37,4 +37,20 @@ public class Sample3AuthConfiguration extends WebSecurityConfigurerAdapter {
   PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
+
+
+  /**
+   * 認証されたユーザがどこにアクセスできるか（認可処理）
+   */
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+
+    // Spring Securityのフォームを利用してログインを行う
+    http.formLogin();
+
+    http.authorizeRequests().antMatchers("/sample5/**").authenticated();
+
+    // Spring Securityの機能を利用してログアウト．ログアウト時は http://localhost:8000/ に戻る
+    http.logout().logoutSuccessUrl("/");
+  }
 }
