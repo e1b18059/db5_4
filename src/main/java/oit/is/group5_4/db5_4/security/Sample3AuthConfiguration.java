@@ -38,7 +38,6 @@ public class Sample3AuthConfiguration extends WebSecurityConfigurerAdapter {
     return new BCryptPasswordEncoder();
   }
 
-
   /**
    * 認証されたユーザがどこにアクセスできるか（認可処理）
    */
@@ -50,8 +49,8 @@ public class Sample3AuthConfiguration extends WebSecurityConfigurerAdapter {
 
     http.authorizeRequests().antMatchers("/sample5/**").authenticated();
 
-    http.csrf().disable();
-    http.headers().frameOptions().disable();
+    // http.csrf().disable();
+    // http.headers().frameOptions().disable();
 
     // Spring Securityの機能を利用してログアウト．ログアウト時は http://localhost:8000/ に戻る
     http.logout().logoutSuccessUrl("/");
